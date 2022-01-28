@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+
+  back:
+    container_name: back_clase
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/app
+
+  front:
+    container_name: front_clase
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+
+volumes:
+    back:
+    front:
+
+
+    #Se tienen varios contenedores, docker compose los orquesta para que haya comunicación 
+    #entre ellos

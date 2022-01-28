@@ -1,0 +1,31 @@
+sudo chmod 666 /var/run/docker.sock
+
+docker run hello-world
+
+docker run docker/whalesay cowsay boo
+
+docker containter ls --all --Enlista los contenedores 
+
+#Crear imagen, -t --> tag, punto final para indicarle el directorio
+docker build  -t myimage:v1.0 .
+
+docker build -t myimage:v1.0 .
+
+Ejecutando el contenedor:
+Se le pone un nombre (mycontainer)
+
+docker run --name mycontainer -p 8000:80 myimage:v1.0
+
+docker-compose build
+
+para levantar el servidor:
+docker-compose up
+crea contenedor a partir de la imagen
+
+#Crea contenedor y lo levanta
+docker-compose up --build
+
+para matar la aplicación
+docker-compose down
+
+52:08
