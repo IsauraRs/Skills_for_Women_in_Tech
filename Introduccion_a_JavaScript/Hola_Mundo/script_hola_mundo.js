@@ -1,0 +1,1 @@
+console.log("Estoy escribiendo javascript desde un archivo .js")
