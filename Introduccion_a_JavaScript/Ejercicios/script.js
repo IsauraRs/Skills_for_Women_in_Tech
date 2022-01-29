@@ -20,7 +20,7 @@ let num = ejercicio1[index] % ejercicio1[index];
 
   if(counter > 2)
   {
-    console.log(`No es primo ${ejercicio1[index]}`)
+    //pass
   }
   else if(counter === 2 && (ejercicio1[index] % 1 === 0) && (num === 0))
   {
