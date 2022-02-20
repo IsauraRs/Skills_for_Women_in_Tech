@@ -42,7 +42,7 @@ En un inicio la  arquitectura de las aplicaciones web a pesar de trabajar como c
 
 La aplicación web se encargaba de mostrar y procesar el frontend y el backend, desde el lado del servidor se podía manejar qué se mostraría en el lado del frontend y trabajar también el backend.
 
-![WebMonolítica]()
+![WebMonolítica](https://github.com/IsauraRs/Skills_for_Women_in_Tech/blob/main/Introduccion_a_Desarrollo_Web/images/Monolito.png)
 
 
 ### Servicios web y API web
@@ -68,7 +68,7 @@ REST, REpresentational State Transfer, es un tipo de arquitectura de desarrollo 
 REST permite crear servicios y aplicaciones que pueden ser usadas por cualquier dispositivo o cliente que entienda HTTP, por lo que es increíblemente más simple y convencional que otras alternativas que se han usado en los últimos diez años como SOAP y XML-RPC.
 
 
-![APIREST]()
+![APIREST](https://github.com/IsauraRs/Skills_for_Women_in_Tech/blob/main/Introduccion_a_Desarrollo_Web/images/APIREST.png)
 
 
 Una API es una interfaz, una web API es una interfaz web para poder comunicar con un servicio web.
