@@ -1,0 +1,41 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Le da a todas las etiquetas p ese formato (esos atributos)*/ 
+p {
+    color: red;
+    font-size: 20px;
+}
+
+/*Identificador, se llama en el html con id = nombreEtiqueta, tiene más jerarquía*/
+#etiqueta {
+    color: blue;
+}
+
+#diferente {
+    background-color: white;
+}
+
+.elemento {
+    font-size: 30px;
+}
+
+.contenedor {
+    background-color: red;
+    height: 100vh;
+    display: flex; /*Para indicar cómo se van a acomodar los elementos dentro del contenedor*/
+    background-image: url("https://t2.ea.ltmcdn.com/es/posts/4/4/0/como_educar_a_mi_shiba_inu_22044_orig.jpg"); /*Para poner una imagen de fondo*/
+    background-size: cover; /*Para que esté en toda la pantalla*/
+}
+
+.clase {
+    color: purple;
+}
+
+.cuadro {
+    background-color: red;
+    margin: 20px;
+    padding: 20px;
+}

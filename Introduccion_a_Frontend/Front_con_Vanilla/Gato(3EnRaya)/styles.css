@@ -1,0 +1,59 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.contenedor {
+    height: 100vh;
+    display: flex; /*Para indicar cómo se van a acomodar los elementos dentro del contenedor*/
+    flex-direction: column; /*Solo se puede usar cuando antes se tiene el display flex, puede acomodarse en
+    row o column o de derecha a izquierda o de abajo hacia arriba*/
+    padding: 20px;
+    justify-content: center; /*Es la forma de acomodar objetos en la pantalla, acomoda en el eje principal, depende del flex-direction*/
+    align-items: center; /*Acomoda en el eje secundario*/
+}
+
+.cuadro {
+    width: 600px;
+    height: 600px;
+    display: grid; /*Ayuda a darle el mismo espacio dentro del contenedor a cada elemento*/
+    grid-template-columns: 1fr 1fr 1fr; /*Calcula el espacio que se tiene y hacer las divisiones*/
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px; /*Hace una separación dentro del contenedor e hijos, funciona con grid y flex*/
+    background-color: black;
+}
+
+.cuadro div {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.cuadro div:hover { /*Tiene la subclase hover, cuando el mouse se pone encima, se le está haciendo hover a ese elemento*/
+
+    background-color: rgb(218 , 218 , 218 , 1);
+    cursor: pointer;
+}
+
+button {
+    padding: 20px 10px;
+    background-color: #7428cc;
+    color: white;
+    outline: none;
+    border: 0px;
+    border-radius: 8px;
+    width: 200px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 1px; 
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #6230af;
+}
