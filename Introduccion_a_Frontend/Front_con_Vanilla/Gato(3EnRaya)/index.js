@@ -78,6 +78,13 @@ const verificarVictoria = () => {
     console.log(forma1);
 
     if (forma1 || forma2 || forma3 || forma4 || forma5 || forma6 || forma7 || forma8) {
+        
+        const linea = document.getElementById('linea');
+
+        linea.style.height = '10px';
+        linea.style.width = '600px';
+        linea.style.top = '80px';
+        linea.style.left = '0px';
 
         victoria = true; //Para que no se pueda dar click una vez que ha ganado alguien
 
@@ -104,6 +111,13 @@ const reload = () => {
     const div7 = document.getElementById(7);
     const div8 = document.getElementById(8);
     const div9 = document.getElementById(9);
+
+    const linea = document.getElementById('linea');
+
+    linea.style.height = '0px';
+    linea.style.width = '0px';
+    linea.style.top = '0px';
+    linea.style.left = '0px';
 
     div1.innerText = "";
     div2.innerText = "";
