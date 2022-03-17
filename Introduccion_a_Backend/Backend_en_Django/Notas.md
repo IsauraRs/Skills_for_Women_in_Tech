@@ -89,3 +89,67 @@ python3 manage.py startapp app1
 No se genera el archivo urls pero es recomendable generarlo dentro de cada app para tener más orden.
 
 Cada cambio que se haga en models generará archivos en migrations, que indica a la bd la estructura de las tablas y modelos y así se pueda comunicar eficientemente la aplicación y la BD.
+
+Modelo --> interacción que se tiene entre el código y la base de datos.
+
+SQLite3 no pide un host porque está en el mismo directorio.
+
+El nombre de la tabla es generado por Django a partir del nombre de la aplicación junto con el nombre del modelo, si se quiere dar un nombre a la tabla, se debe poner una subclase y dentro el parámetro db_table = nombre_tabla
+
+Si se ejecuta python3 manage.py makemigrations no sucede nada debido a que hasta ahora no se ha indicado a Django que existe el modelo, para hacerlo, en settings.py, en la parte de INSTALLED_APPS se agrega el nombre de la aplicación, entonces cuando se ejecute makemigrations hará la migración y creará el modelo del libro, crea un archivo 0001_initial.py, donde está la definición del modelo, si no se crea un ID, Django lo crea.
+
+Para ver lo que hará la migración antes de que se vaya a la BD, lo que va a ejecutar el migrate: 
+
+python3 manage.py sqlmigrate nombre_app númeroDelArchivoCreadoDespuésDeMakeMigrations
+
+por ejemplo:
+
+python3 manage.py sqlmigrate books 0001
+
+Da el SQL que genera para crear el modelo.
+
+Se hace un modelo para cada tabla.
+
+Después de hacer el modelo en el archivo models.py, ejecutar python3 manage.py makemigrations
+
+Para crear relación entre tablas, dentro del modelo:
+
+nombre = models.ForeignKey(nombre_tabla , on_delete = models.CASCADE , verbose_name = 'Author')
+
+Eliminar en cascada --> Si se tiene una relación de un objeto a otro, si se intenta eliminar marcará error de integridad por la relación entre registros, si se elimina un padre, irá hacia abajo y eliminará todos los hijos del mismo registro.
+
+La tabla a la que se hace referencia debe estar definida arriba de la tabla donde se relacionan o no encontrará el modelo.
+
+Cuando se hace la migración después de hacer la relación entre tablas en una tabla que ya existe pregunta si se quiere agregar un valor default a los registros que ya están creados o si se quiere detener el proceso para agregar manualmente un valor  default.
+
+En donde se crea la relación agregar null = True después de CASCADE
+
+nombre = models.ForeignKey(nombre_tabla , on_delete = models.CASCADE , null = True ,verbose_name = 'Author')
+
+53:04
+
+Serializador --> ayuda a convertir los modelos en objetos que se pueden devolver a través del response de los views, el response devuelve la información a la parte del front que está haciendo una petición en algún endpoint o en una URL.
+
+Suponiendo que solo queremos devolver ciertos parámetros en serializers, cambiar el campo fields = \'\_\_all\_\_'  por fields = ('nombre_campo1' , 'nombre_campo2' ,)
+
+El serializador también ayuda a hacer validaciones dentro de las partes de actualización y creación de objetos, ayuda a no trabajar tan directamente sobre el modelo, sino que es más hacia la parte del serializador que valida la data que se va recibiendo desde la consulta, en caso de que no sea útil la data que están enviando o no sea la data que se tiene que recibir, que mande un error, eso se hace desde las views, se va al objeto del request.
+
+En el put, post y patch hay algo llamado cuerpo de la petición, es donde viene toda la data, se guarda en request.data, se puede almacenar en una variable para manipularla de manera más sencilla, luego se serializa.
+
+Hay varias maneras de manejar la validación, una de ellas es el método .is_valid(), toma el serializador y valida que los datos que se envían en ese punto sean correctos y estén acorde a lo que se pide en el modelo. Hay dos formas comúnes de utilizarla, con (raise_exception = true), al momento de validar, si encuentra un parámetro que no es útil o no es como debería, hace un return a la parte que está haciendo la petición indicando que no es lo que se pide, regresa un error 400 y un mensaje indicando el dato o problema exacto por el que se está regresando este error.
+
+Otra forma es: 
+
+``` python
+if serializer.is_valid():
+   
+   return Response(serializer.errors , status  = status.HTTP_400_BAD_REQUEST)
+```
+
+Pero se tiene que identificar el error que devuelve el serializer para que sea correcto, no es del todo informativo para quien recibe esa respuesta, en front lo primero que se revisa es el status y éste puede no coincidir con el error que está recibiendo, es más recomendable el raise_exception para que devuelva el código de error que se necesita ver
+
+Si no se especifica un campo en el serializer, devuelve un error al intentar guardarlo
+
+Si se corrige un error tipográfico o algo similar en las vistas, se debe hacer un migrate.
+
+En shortcuts hay algo que se llama get list or 404, si las listas están vacías, devuelve 404, puede usarse, por ejemplo, en donde se piden todos los autores. 

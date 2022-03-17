@@ -16,6 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from books.views import (
+    RetrieveAuthors, 
+    RetrieveBooks , 
+    CreateAuthor ,
+    CreateBook ,
+    RetrieveAuthorAPIVIEW ,
+    RetrieveBookAPIVIEW)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    #Como la vista está basada en clases y los paths o URLS solo pueden ser funciones, para que 
+    #tome las funciones definidas dentro de la vista se agrega el método .as_view()
+    #para hacer la transformación y que se pueda mostrar.
+    path('books/' , RetrieveBooks.as_view()),
+    path('books/create/' , CreateBook.as_view()) ,
+    path('books/<int:book_id>/' , RetrieveBookAPIVIEW.as_view()) ,
+
+    path('authors/' , RetrieveAuthors.as_view()) ,
+    path('authors/create/' , CreateAuthor.as_view()) ,
+    path('authors/<int:author_id>/' , RetrieveAuthorAPIVIEW.as_view()) ,
 ]
